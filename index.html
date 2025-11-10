@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カウントアップ・カウントダウン</title>
+</head>
+<body>
+ 
+    <!--ボタンの定義-->
+    <p>カウントアップ・ダウンプログラム</p>
+    <button id="countUpButton" type="button">カウントアップ</button>
+    <button id="countDownButton" type="button">カウントダウン</button>
+    
+    <!-- カウント表示場所 -->
+    <p>カウント: <div id="counter">0</div></p>
+  
+    <!--  制限時間表示場所-->
+    <div id="timeLimit"></div>
+
+  <script>
+    //変数の定義
+    let count = 0;
+    let reminingTimeNum = 10;
+    let timeInterval;
+
+    // カウントアップボタンをクリックしたときの処理
+    let cntup_btn = document.getElementById('countUpButton') ;
+    cntup_btn.addEventListener('click', function() {
+      count++;
+      let cntup = document.getElementById('counter') ;
+      cntup.innerText = count;
+    });
+
+    // カウントダウンボタンをクリックしたときの処理
+    let cntdown_btn = document.getElementById('countDownButton') ;
+    cntdown_btn.addEventListener('click', function() {
+      count--;
+      let cntdown = document.getElementById('counter') ;
+      cntdown.innerText = count;
+    });
+
+     // 制限時間のカウントダウン
+        //残り時間を表示する要素の取得
+        let timeMessage=document.getElementById("timeLimit") ;
+        
+        let timerId = setInterval(function(){
+        timeMessage.innerHTML = '<p>制限時間：' + reminingTimeNum + '秒</p>';
+
+        if (reminingTimeNum <= 0) {
+            alert('制限時間終了');
+             clearInterval(timerId);
+        }
+        reminingTimeNum--;
+        },1000);
+
+        
+  </script>
+</body>
+</html>
